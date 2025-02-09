@@ -5,6 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <Authors>Zeikomi552</Authors>
+    <Company>Zeikomi</Company>
   </PropertyGroup>
 
 </Project>
