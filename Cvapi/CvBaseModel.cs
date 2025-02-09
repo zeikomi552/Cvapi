@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel;
 
-namespace Cvapi.Models
+namespace Cvapi
 {
     public class CvBaseModel
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected void RaisePropertyChanged(String info)
+        protected void RaisePropertyChanged(string info)
         {
             if (PropertyChanged != null)
             {

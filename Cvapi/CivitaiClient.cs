@@ -1,6 +1,6 @@
-﻿using Cvapi.Models;
-using Cvapi.Models.Civitai.Images;
+﻿using Cvapi.Models.Civitai.Images;
 using Cvapi.Models.Civitai.Models;
+using Cvapi.Tags;
 using Cvapi.Utilities;
 using System;
 using System.Collections;
@@ -80,6 +80,40 @@ namespace Cvapi
         /// <param name="searchCondition">検索条件</param>
         /// <returns>検索結果</returns>
         public async Task<CvsImageM> ImageSearch(CvsImageSearchM searchCondition)
+        {
+            // Jsonファイルを展開して返却
+            return await ImageSearch(searchCondition.RequestQuery);
+        }
+        #endregion
+
+        #region タグ検索処理
+        /// <summary>
+        /// タグ検索処理
+        /// </summary>
+        /// <param name="query">タグ検索条件(クエリ)</param>
+        /// <returns>検索結果</returns>
+        public async Task<CvsTagM> TagSearch(string query)
+        {
+            string request = string.Empty;
+
+            // エンドポイント + パラメータ
+            string url = CvsTagM.Endpoint + query;
+
+            CivitaiRequest tmp = new CivitaiRequest();
+
+            // 実行してJSON形式をデシリアライズ
+            var request_tmp = await tmp.Request(url);
+
+            // Jsonファイルを展開して返却
+            return JSONUtil.DeserializeFromText<CvsTagM>(request_tmp);
+        }
+
+        /// <summary>
+        /// タグ検索処理
+        /// </summary>
+        /// <param name="query">タグ検索条件</param>
+        /// <returns>検索結果</returns>
+        public async Task<CvsImageM> TagSearch(CvsTagSearchM searchCondition)
         {
             // Jsonファイルを展開して返却
             return await ImageSearch(searchCondition.RequestQuery);

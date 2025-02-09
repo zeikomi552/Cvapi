@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cvapi.Models.Civitai.Images;
 using Cvapi.Models.Civitai.Models;
+using Cvapi.Tags;
 
 namespace Cvapi.Tests
 {
@@ -39,5 +40,16 @@ namespace Cvapi.Tests
             var ret = await client.ImageSearch(tmp);
             Assert.AreEqual(100, ret.Items.Count);
         }
+
+        [TestMethod()]
+        public async Task TagSearchTest()
+        {
+            CvsTagSearchM tmp = new CvsTagSearchM() { Limit = 100 };
+
+            CivitaiClient client = new CivitaiClient();
+            var ret = await client.TagSearch(tmp);
+            Assert.AreEqual(100, ret.Items.Count);
+        }
+
     }
 }
